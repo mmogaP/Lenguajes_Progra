@@ -1,6 +1,6 @@
 %{ 
   #include<stdio.h> 
-  #include "bison.tab.h" 
+  #include "P1.tab.h" 
   void yyerror(char *);
 %} 
 

@@ -10,23 +10,23 @@
    void move(char *s){
       for(int i = 0; i < strlen(s); i++){
          if(s[i] == 'N'){
-            printf("Norte ");
+            printf(" ↑ ");
             y++;
          } 
          else if(s[i] == 'S'){
-            printf("Sur ");
+            printf(" ↓ ");
             y--;
          } 
          else if(s[i] == 'E'){
-            printf("Este ");
+            printf(" → ");
             x++;
          } 
          else if(s[i] == 'O'){
-            printf("Oeste ");
+            printf(" ← ");
             x--;
          }
       }
-      printf(",Coordenadas: %d, %d", x,y);
+      printf("\nCoordenadas: (%d,%d)", x,y);
    }
 
    void calcularcordenadas(char *s){
