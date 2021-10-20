@@ -10,11 +10,11 @@
 LETRA [NSEO]
 PALABRA {LETRA}+
 
-
 /* Rule Section */
 %% 
 
 {PALABRA} {yylval.strVal= strdup (yytext); return PALABRA; }
+
 "evaluar"            { return EVALUAR; }
 [[:blank:]] ;
 .                     yyerror("Unknown character");

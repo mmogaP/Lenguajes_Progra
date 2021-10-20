@@ -6,7 +6,7 @@
 
 %option noyywrap
 
-
+/* expresiones regulares */
 LETRA [NSEO]
 PALABRA {LETRA}+
 
