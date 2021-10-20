@@ -30,14 +30,14 @@
 
 %token <strVal>PALABRA
 %token <strVal>EVALUAR
-%type <strVal> E
+%type <strVal> Expr
 
 /* Acciones de produccion */
 %% 
-   INICIO: E
+   INICIO: Expr
    ;
-
-   E : E PALABRA {CalcularCoordenadas($2);}
+   
+   Expr : Expr PALABRA {CalcularCoordenadas($2);}
       | PALABRA {CalcularCoordenadas($1);}
    ;
 

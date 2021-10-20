@@ -6,15 +6,13 @@
 
 %option noyywrap
 
-/* expresiones regulares */
 LETRA [NSEO]
-PALABRA {LETRA}+
-
+secuencia {LETRA}+
 
 /* Rule Section */
 %% 
 
-{PALABRA} {yylval.strVal= strdup (yytext); return PALABRA; }
+{secuencia} {yylval.strVal= strdup (yytext); return secuencia; }
 "evaluar"            { return EVALUAR; }
 [[:blank:]] ;
 .                     yyerror("Unknown character");
