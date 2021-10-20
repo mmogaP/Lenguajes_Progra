@@ -7,12 +7,12 @@
 %option noyywrap
 
 LETRA [NSEO]
-secuencia {LETRA}+
+PALABRA {LETRA}+
 
 /* Rule Section */
 %% 
 
-{secuencia} {yylval.strVal= strdup (yytext); return secuencia; }
+{PALABRA} {yylval.strVal= strdup (yytext); return PALABRA; }
 "evaluar"            { return EVALUAR; }
 [[:blank:]] ;
 .                     yyerror("Unknown character");
