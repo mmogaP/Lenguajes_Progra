@@ -4,47 +4,74 @@
    int yylex();
    void yyerror(char *s);
 
-   void CalcularCoordenadas(char *s){
-      int CordenadaX = 0;
-      int CordenadaY = 0;
+   int x = 0;
+   int y = 0;
+
+   void move(char *s){     
       
-      for (int i = 0; i < strlen(s); i++) {
-         switch(s[i]){
-            case 'N': CordenadaY++;printf(" ↑ "); break;
-            case 'S': CordenadaY--;printf(" ↓ "); break;
-            case 'O': CordenadaX--;printf(" ← "); break;
-            case 'E': CordenadaX++;printf(" → "); break;
+         if(s[0] == 'N'){
+            printf("[Norte] ");
+            y++;
+         } 
+         else if(s[0] == 'S'){
+            printf("[Sur] ");
+            y--;
+         } 
+         else if(s[0]== 'E'){
+            printf("[Este] ");
+            x++;
+         } 
+         else if(s[0] == 'O'){
+            printf("[Oeste] ");
+            x--;
+         }      
+   }
+   void diag(char *s, char *c){
+           
+      switch(s[0]){
+            case 'N': y++; printf(" [Nor"); break;
+            case 'S': y--; printf(" [Sur"); break;            
          }
-      printf("COORDENADAS: (%d,%d)", CordenadaX,CordenadaY);
-      }
-   
-}
-
-
-
+      switch(c[0]){            
+            case 'O': x--; printf("Oeste] "); break;
+            case 'E': x++; printf("Este] "); break;
+         }
+   }
+   void coordenadas(){
+      printf("\nCoordenadas: %d, %d\n", x,y);
+   }
+    
 %} 
-
 %union {
     char *strVal;
     char charVal;
 }
 
-/* TOKENS */
-%token <strVall>PALABRA
-%token <strVal>CADENA
-%token <strVal>EVALUAR
-%type <strVal> Expr
-
-/* Acciones de produccion */
+/* declaramos los tokens */
+%token FINLINEA
+%token <strVal>EJEY
+%token <strVal>EJEX
+/*%token <strVal>EVALUAR*/
+/*%type <strVal> Expr*/
+/*%type <strVal> DIAG*/
+/* Rule Section */
 %% 
-   INICIO: Expr
+   INICIO : INICIO LETRA
+      | LETRA
    ;
+   LETRA : FIN      
+      | DIAG
+      | EJEY {move($1);} 
+      | EJEX {move($1);}      
+   ;   
    
-   Expr : Expr CADENA {diag($1 $2);}
-      | CADENA {CalcularCoordenadas($1);}
+   DIAG : EJEY EJEX {diag($1,$2);}              
    ;
-
+   FIN: FINLINEA {coordenadas();}
+   ;
 %% 
+
+
 
 void yyerror(char *s) { 
    printf("\n%s\n", s); 
@@ -57,3 +84,13 @@ int yywrap(){
 int main(){
     return (yyparse());
 }
+  
+
+/*
+Expr 
+   : Expr PALABRA
+   {printf("%s",$2);}
+   | PALABRA
+   {printf("%s",$1);}
+; 
+*/

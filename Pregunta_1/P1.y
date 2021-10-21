@@ -4,10 +4,10 @@
    int yylex();
    void yyerror(char *s);
 
+   int CordenadaX = 0;
+   int CordenadaY = 0;
+   
    void CalcularCoordenadas(char *s){
-      int CordenadaX = 0;
-      int CordenadaY = 0;
-
       for (int i = 0; i < strlen(s); i++) {
          switch(s[i]){
             case 'N': CordenadaY++;printf(" ↑ "); break;
@@ -36,7 +36,7 @@
 %% 
    INICIO: Expr
    ;
-   
+
    Expr : Expr PALABRA {CalcularCoordenadas($2);}
       | PALABRA {CalcularCoordenadas($1);}
    ;
