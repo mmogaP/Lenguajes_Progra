@@ -2,19 +2,21 @@
   #include<stdio.h> 
   #include "P3.tab.h" 
   void yyerror(char *);
-%} 
+%}
 
 %option noyywrap
 
+EJEY [NS]
+EJEX [EO]
+"*"	{ return MULTIPLICA; }
 [0-9]+	{ yylval = atoi(yytext); return NUMERO; }
-LETRA [NSEO]
-PALABRA {LETRA}+
-
 /* Rule Section */
 %% 
+{EJEY} {yylval.strVal= strdup (yytext); return EJEY; }
+{EJEX} {yylval.strVal= strdup (yytext); return EJEX; }
+\n  {return FINLINEA;}
 
-{PALABRA} {yylval.strVal= strdup (yytext); return PALABRA; }
-"evaluar"            { return EVALUAR; }
 [[:blank:]] ;
 .                     yyerror("Unknown character");
+
 %%

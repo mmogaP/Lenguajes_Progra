@@ -7,7 +7,7 @@
    int x = 0;
    int y = 0;
 
-   void move(char *s){     
+   void CalcularCoordenada(char *s){     
       
          if(s[0] == 'N'){
             printf("[Norte] ");
@@ -26,7 +26,7 @@
             x--;
          }      
    }
-   void diag(char *s, char *c){
+   void CalcularDiagonal(char *s, char *c){
            
       switch(s[0]){
             case 'N': y++; printf(" [Nor"); break;
@@ -38,7 +38,7 @@
          }
    }
    void coordenadas(){
-      printf("\nCoordenadas: %d, %d\n", x,y);
+      printf("\nCoordenadas: (%d,%d)\n", x,y);
    }
     
 %} 
@@ -53,19 +53,19 @@
 %token <strVal>EJEX
 /*%token <strVal>EVALUAR*/
 /*%type <strVal> Expr*/
-/*%type <strVal> DIAG*/
+/*%type <strVal> DIAGONAL*/
 /* Rule Section */
 %% 
    INICIO : INICIO LETRA
       | LETRA
    ;
    LETRA : FIN      
-      | DIAG
-      | EJEY {move($1);} 
-      | EJEX {move($1);}      
+      | DIAGONAL
+      | EJEY {CalcularCoordenada($1);} 
+      | EJEX {CalcularCoordenada($1);}      
    ;   
    
-   DIAG : EJEY EJEX {diag($1,$2);}              
+   DIAGONAL : EJEY EJEX {CalcularDiagonal($1,$2);}              
    ;
    FIN: FINLINEA {coordenadas();}
    ;
