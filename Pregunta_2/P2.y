@@ -15,9 +15,12 @@
             case 'O': CordenadaX--;printf(" ← "); break;
             case 'E': CordenadaX++;printf(" → "); break;
          }
+      printf("COORDENADAS: (%d,%d)", CordenadaX,CordenadaY);
       }
-   printf("\nCOORDENADAS: (%d,%d)", CordenadaX,CordenadaY);
+   
 }
+
+
 
 %} 
 
@@ -37,7 +40,7 @@
    INICIO: Expr
    ;
    
-   Expr : Expr CADENA {CalcularCoordenadas($2);printf("DHSJFKHSDFKJ");}
+   Expr : Expr CADENA {diag($1 $2);}
       | CADENA {CalcularCoordenadas($1);}
    ;
 

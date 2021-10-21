@@ -13,11 +13,21 @@
 
 /* TOKENS */
 
-
+%token NUMERO
 
 /* Acciones de produccion */
 %% 
 
+ INICIO: Expr
+   ;
+   
+   Expr : Expr PALABRA {CalcularCoordenadas($2);}
+      | PALABRA {CalcularCoordenadas($1);}
+   ;
+exp: factor
+ | exp SUMA factor { $$ = $1 + $3; }
+ | exp RESTA factor { $$ = $1 * $3;  }
+ ; 
 
 %% 
 

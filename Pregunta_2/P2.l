@@ -11,7 +11,7 @@ PALABRA {LETRA}+
 
 EJEY [NS]
 EJEX [EO]
-CADENA ({EJEY}{EJEX}|{EJEX}{EJEY}|{LETRA}+)
+CADENA ({EJEY}{EJEX}|{LETRA}+)
 
 /* Rule Section */
 %% 

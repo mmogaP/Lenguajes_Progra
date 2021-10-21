@@ -1,20 +1,24 @@
 %{ 
   #include<stdio.h> 
-  #include "P3.tab.h" 
+  #include "bison.tab.h" 
   void yyerror(char *);
-%} 
+%}
 
 %option noyywrap
 
-[0-9]+	{ yylval = atoi(yytext); return NUMERO; }
-LETRA [NSEO]
-PALABRA {LETRA}+
+EJEY [NS]
+EJEX [EO]
+
+
 
 /* Rule Section */
 %% 
 
-{PALABRA} {yylval.strVal= strdup (yytext); return PALABRA; }
+{EJEY} {yylval.strVal= strdup (yytext); return EJEY; }
+{EJEX} {yylval.strVal= strdup (yytext); return EJEX; }
+\n  {return FINLINEA;}
 "evaluar"            { return EVALUAR; }
 [[:blank:]] ;
 .                     yyerror("Unknown character");
+
 %%
