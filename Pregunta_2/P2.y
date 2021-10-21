@@ -7,7 +7,7 @@
    void CalcularCoordenadas(char *s){
       int CordenadaX = 0;
       int CordenadaY = 0;
-
+      
       for (int i = 0; i < strlen(s); i++) {
          switch(s[i]){
             case 'N': CordenadaY++;printf(" ↑ "); break;
@@ -19,6 +19,7 @@
    printf("\nCOORDENADAS: (%d,%d)", CordenadaX,CordenadaY);
 }
 
+
 %} 
 
 %union {
@@ -27,8 +28,8 @@
 }
 
 /* TOKENS */
-
-%token <strVal>PALABRA
+%token <strVall>PALABRA
+%token <strVal>CADENA
 %token <strVal>EVALUAR
 %type <strVal> Expr
 
@@ -37,8 +38,8 @@
    INICIO: Expr
    ;
    
-   Expr : Expr PALABRA {CalcularCoordenadas($2);}
-      | PALABRA {CalcularCoordenadas($1);}
+   Expr : Expr CADENA {CalcularCoordenadas($2);printf("DHSJFKHSDFKJ");}
+      | CADENA {CalcularCoordenadas($1);}
    ;
 
 %% 

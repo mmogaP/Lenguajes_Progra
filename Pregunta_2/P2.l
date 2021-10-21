@@ -9,10 +9,14 @@
 LETRA [NSEO]
 PALABRA {LETRA}+
 
+EJEY [NS]
+EJEX [EO]
+CADENA ({EJEY}{EJEX}|{EJEX}{EJEY}|{LETRA}+)
+
 /* Rule Section */
 %% 
 
-{PALABRA} {yylval.strVal= strdup (yytext); return PALABRA; }
+{CADENA} {yylval.strVal= strdup (yytext); return CADENA; }
 "evaluar"            { return EVALUAR; }
 [[:blank:]] ;
 .                     yyerror("Unknown character");
