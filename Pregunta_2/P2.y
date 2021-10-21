@@ -19,7 +19,6 @@
    printf("\nCOORDENADAS: (%d,%d)", CordenadaX,CordenadaY);
 }
 
-
 %} 
 
 %union {

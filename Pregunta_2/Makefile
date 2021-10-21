@@ -4,4 +4,4 @@ P2.exe: P2.l P2.y
 	gcc lex.yy.c P2.tab.c -lfl
 
 clean:
-rm P2.tab.* lex.yy.c a.out
+	rm P2.tab.* lex.yy.c a.out
