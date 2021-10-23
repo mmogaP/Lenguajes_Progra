@@ -7,26 +7,33 @@
    int x = 0;
    int y = 0;
 
-   void move(char *s, char *c){     
+   void CalcularCoordenada(char *s, int c){     
       
          if(s[0] == 'N'){
-            printf("[Norte] ");
-            y++;
-         } 
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nNorte →\t"); }
+            printf("(");for (int i = 0; i < c; i++) {;printf("[Norte]"); }printf(")");
+            y+=c*(1);
+         }
+          
          else if(s[0] == 'S'){
-            printf("[Sur] ");
-            y--;
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nSur →\t"); }
+            printf("(");for (int i = 0; i < c; i++) {;printf("[Sur]"); }printf(")");
+            y+=c*(-1);
          } 
          else if(s[0]== 'E'){
-            printf("[Este] ");
-            x++;
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nEste →\t"); }
+            printf("(");
+            for (int i = 0; i < c; i++) {;printf("[Este]"); }
+            x+=c*(1);
          } 
          else if(s[0] == 'O'){
-            printf("[Oeste] ");
-            x--;
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nOeste →\t"); }
+            printf("(");
+            for (int i = 0; i < c; i++) {;printf("[Oeste]"); }
+            x+=c*(-1);
          }      
    }
-   void diag(char *s, char *c){
+   void CalcularDiagonal(char *s, char *c){
            
       switch(s[0]){
             case 'N': y++; printf(" [Nor"); break;
@@ -38,36 +45,41 @@
          }
    }
    void coordenadas(){
-      printf("\nCoordenadas: %d, %d\n", x,y);
+      printf("\nCoordenadas: (%d,%d)\n", x,y);
    }
     
 %} 
 %union {
-    char *strVal;
-    char charVal;
+   char *strVal;
+   char charVal;
+   int c;
 }
 
 /* declaramos los tokens */
 %token FINLINEA
 %token <strVal>EJEY
 %token <strVal>EJEX
+%token <c> NUM
 /*%token <strVal>EVALUAR*/
-%token NUMERO
 /*%type <strVal> Expr*/
-/*%type <strVal> DIAG*/
+/*%type <strVal> DIAGONAL*/
 /* Rule Section */
 %% 
    INICIO : INICIO LETRA
       | LETRA
    ;
-
    LETRA : FIN      
-      | EJEY NUMERO {move($1, $2);} 
-      | EJEX NUMERO {move($1, $2);}  
+      | DIAGONAL
+      | EJEY NUM{CalcularCoordenada($1,$2);} 
+      | EJEX NUM{CalcularCoordenada($1,$2);}      
    ;   
+   DIAGONAL : EJEY EJEX {CalcularDiagonal($1,$2);}              
+   ;
    FIN: FINLINEA {coordenadas();}
    ;
 %% 
+
+
 
 void yyerror(char *s) { 
    printf("\n%s\n", s); 

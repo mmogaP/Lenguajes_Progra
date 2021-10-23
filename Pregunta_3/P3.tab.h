@@ -34,8 +34,8 @@
 /* Undocumented macros, especially those whose name start with YY_,
    are private implementation details.  Do not rely on them.  */
 
-#ifndef YY_YY_P2_TAB_H_INCLUDED
-# define YY_YY_P2_TAB_H_INCLUDED
+#ifndef YY_YY_P3_TAB_H_INCLUDED
+# define YY_YY_P3_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -51,7 +51,8 @@ extern int yydebug;
   {
     FINLINEA = 258,
     EJEY = 259,
-    EJEX = 260
+    EJEX = 260,
+    NUM = 261
   };
 #endif
 
@@ -59,12 +60,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 46 "P2.y"
+#line 52 "P3.y"
 
-    char *strVal;
-    char charVal;
+   char *strVal;
+   char charVal;
+   int c;
 
-#line 68 "P2.tab.h"
+#line 70 "P3.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -77,4 +79,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_P2_TAB_H_INCLUDED  */
+#endif /* !YY_YY_P3_TAB_H_INCLUDED  */

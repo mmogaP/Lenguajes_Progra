@@ -66,7 +66,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "P2.y"
+#line 1 "P3.y"
  
    #include<stdio.h> 
    #include<string.h>
@@ -76,24 +76,30 @@
    int x = 0;
    int y = 0;
 
-   void CalcularCoordenada(char *s){     
+   void CalcularCoordenada(char *s, int c){     
       
          if(s[0] == 'N'){
-            printf("[Norte] ");
-            y++;
-            y=y*2;
-         } 
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nNorte →\t"); }
+            printf("(");for (int i = 0; i < c; i++) {;printf("[Norte]"); }printf(")");
+            y+=c*(1);
+         }
+          
          else if(s[0] == 'S'){
-            printf("[Sur] ");
-            y--;
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nSur →\t"); }
+            printf("(");for (int i = 0; i < c; i++) {;printf("[Sur]"); }printf(")");
+            y+=c*(-1);
          } 
          else if(s[0]== 'E'){
-            printf("[Este] ");
-            x++;
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nEste →\t"); }
+            printf("(");
+            for (int i = 0; i < c; i++) {;printf("[Este]"); }
+            x+=c*(1);
          } 
          else if(s[0] == 'O'){
-            printf("[Oeste] ");
-            x--;
+            for (int i = 0; i < strlen(s); i++) {;printf(" \nOeste →\t"); }
+            printf("(");
+            for (int i = 0; i < c; i++) {;printf("[Oeste]"); }
+            x+=c*(-1);
          }      
    }
    void CalcularDiagonal(char *s, char *c){
@@ -112,7 +118,7 @@
    }
     
 
-#line 116 "P2.tab.c"
+#line 122 "P3.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -145,8 +151,8 @@
 
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
-#ifndef YY_YY_P2_TAB_H_INCLUDED
-# define YY_YY_P2_TAB_H_INCLUDED
+#ifndef YY_YY_P3_TAB_H_INCLUDED
+# define YY_YY_P3_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -162,7 +168,8 @@ extern int yydebug;
   {
     FINLINEA = 258,
     EJEY = 259,
-    EJEX = 260
+    EJEX = 260,
+    NUM = 261
   };
 #endif
 
@@ -170,12 +177,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 46 "P2.y"
+#line 52 "P3.y"
 
-    char *strVal;
-    char charVal;
+   char *strVal;
+   char charVal;
+   int c;
 
-#line 179 "P2.tab.c"
+#line 187 "P3.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -188,7 +196,7 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_P2_TAB_H_INCLUDED  */
+#endif /* !YY_YY_P3_TAB_H_INCLUDED  */
 
 
 
@@ -492,21 +500,21 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  9
+#define YYFINAL  11
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   8
+#define YYLAST   10
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  6
+#define YYNTOKENS  7
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  9
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  11
+#define YYNSTATES  13
 
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   260
+#define YYMAXUTOK   261
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -544,14 +552,14 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5
+       5,     6
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    60,    60,    61,    63,    64,    65,    66,    69,    71
+       0,    68,    68,    69,    71,    72,    73,    74,    77,    79
 };
 #endif
 
@@ -560,8 +568,8 @@ static const yytype_int8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "FINLINEA", "EJEY", "EJEX", "$accept",
-  "INICIO", "LETRA", "DIAGONAL", "FIN", YY_NULLPTR
+  "$end", "error", "$undefined", "FINLINEA", "EJEY", "EJEX", "NUM",
+  "$accept", "INICIO", "LETRA", "DIAGONAL", "FIN", YY_NULLPTR
 };
 #endif
 
@@ -570,7 +578,7 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_int16 yytoknum[] =
 {
-       0,   256,   257,   258,   259,   260
+       0,   256,   257,   258,   259,   260,   261
 };
 # endif
 
@@ -588,8 +596,8 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-       3,    -5,    -4,    -5,     0,    -5,    -5,    -5,    -5,    -5,
-      -5
+       3,    -5,    -4,     4,     0,    -5,    -5,    -5,    -5,    -5,
+      -5,    -5,    -5
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -597,14 +605,14 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     9,     6,     7,     0,     3,     5,     4,     8,     1,
-       2
+       0,     9,     0,     0,     0,     3,     5,     4,     8,     6,
+       7,     1,     2
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -5,    -5,    -2,    -5,    -5
+      -5,    -5,     5,    -5,    -5
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -618,32 +626,34 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       9,     8,    10,     1,     2,     3,     1,     2,     3
+      11,     8,     9,     1,     2,     3,     1,     2,     3,    12,
+      10
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,     5,     4,     3,     4,     5,     3,     4,     5
+       0,     5,     6,     3,     4,     5,     3,     4,     5,     4,
+       6
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,     4,     5,     7,     8,     9,    10,     5,     0,
-       8
+       0,     3,     4,     5,     8,     9,    10,    11,     5,     6,
+       6,     0,     9
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,     6,     7,     7,     8,     8,     8,     8,     9,    10
+       0,     7,     8,     8,     9,     9,     9,     9,    10,    11
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     2,     1,     1,     1,     1,     1,     2,     1
+       0,     2,     2,     1,     1,     1,     2,     2,     2,     1
 };
 
 
@@ -1339,31 +1349,31 @@ yyreduce:
   switch (yyn)
     {
   case 6:
-#line 65 "P2.y"
-             {CalcularCoordenada((yyvsp[0].strVal));}
-#line 1345 "P2.tab.c"
+#line 73 "P3.y"
+                {CalcularCoordenada((yyvsp[-1].strVal),(yyvsp[0].c));}
+#line 1355 "P3.tab.c"
     break;
 
   case 7:
-#line 66 "P2.y"
-             {CalcularCoordenada((yyvsp[0].strVal));}
-#line 1351 "P2.tab.c"
+#line 74 "P3.y"
+                {CalcularCoordenada((yyvsp[-1].strVal),(yyvsp[0].c));}
+#line 1361 "P3.tab.c"
     break;
 
   case 8:
-#line 69 "P2.y"
+#line 77 "P3.y"
                         {CalcularDiagonal((yyvsp[-1].strVal),(yyvsp[0].strVal));}
-#line 1357 "P2.tab.c"
+#line 1367 "P3.tab.c"
     break;
 
   case 9:
-#line 71 "P2.y"
+#line 79 "P3.y"
                  {coordenadas();}
-#line 1363 "P2.tab.c"
+#line 1373 "P3.tab.c"
     break;
 
 
-#line 1367 "P2.tab.c"
+#line 1377 "P3.tab.c"
 
       default: break;
     }
@@ -1595,7 +1605,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 73 "P2.y"
+#line 81 "P3.y"
  
 
 
