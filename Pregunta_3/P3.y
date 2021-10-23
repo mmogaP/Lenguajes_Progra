@@ -59,6 +59,7 @@
 %token FINLINEA
 %token <strVal>EJEY
 %token <strVal>EJEX
+%type <c> NUMERO
 %token <c> NUM
 /*%token <strVal>EVALUAR*/
 /*%type <strVal> Expr*/
@@ -70,9 +71,15 @@
    ;
    LETRA : FIN      
       | DIAGONAL
-      | EJEY NUM{CalcularCoordenada($1,$2);} 
-      | EJEX NUM{CalcularCoordenada($1,$2);}      
-   ;   
+      | EJEY NUMERO {CalcularCoordenada($1,$2);} 
+      | EJEX NUMERO {CalcularCoordenada($1,$2);}
+      | EJEY {CalcularCoordenada($1,1);}     
+      | EJEX {CalcularCoordenada($1,1);}    
+   ;
+
+   NUMERO : NUM
+            |NUM NUMERO {$$= $1 + $2;} 
+   ;  
    DIAGONAL : EJEY EJEX {CalcularDiagonal($1,$2);}              
    ;
    FIN: FINLINEA {coordenadas();}

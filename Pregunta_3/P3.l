@@ -11,7 +11,7 @@ EJEX [EO]
 
 /* Rule Section */
 %% 
-[0-9]+	{ yylval.c = atoi(yytext); return NUM; }
+{NUM}	{ yylval.c = atoi(yytext); return NUM; }
 {EJEY} {yylval.strVal= strdup (yytext); return EJEY; }
 {EJEX} {yylval.strVal= strdup (yytext); return EJEX; }
 \n  {return FINLINEA;}
