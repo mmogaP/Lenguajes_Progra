@@ -16,9 +16,12 @@
             case 'E': CordenadaX++;printf(" → "); break;
          }
       }
-   printf("\nCOORDENADAS: (%d,%d)", CordenadaX,CordenadaY);
-}
-
+   }   
+   void coordenadas(){
+      printf("\nCoordenadas: (%d,%d)\n", CordenadaX,CordenadaY);
+      CordenadaX = 0;
+      CordenadaY = 0;
+   }
 %} 
 
 %union {
@@ -27,20 +30,23 @@
 }
 
 /* TOKENS */
-
+%token FINLINEA
 %token <strVal>PALABRA
 %token <strVal>EVALUAR
-%type <strVal> Expr
 
 /* Acciones de produccion */
 %% 
-   INICIO: Expr
+   INICIO: INICIO Expr
+      | Expr
    ;
 
-   Expr : Expr PALABRA {CalcularCoordenadas($2);}
+   Expr: FIN
+      | Expr PALABRA {CalcularCoordenadas($2);}
       | PALABRA {CalcularCoordenadas($1);}
    ;
 
+   FIN: FINLINEA {coordenadas();}
+   ;
 %% 
 
 void yyerror(char *s) { 

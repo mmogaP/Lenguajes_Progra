@@ -33,19 +33,11 @@
             x+=c*(-1);
          }      
    }
-   void CalcularDiagonal(char *s, char *c){
-           
-      switch(s[0]){
-            case 'N': y++; printf(" [Nor"); break;
-            case 'S': y--; printf(" [Sur"); break;            
-         }
-      switch(c[0]){            
-            case 'O': x--; printf("Oeste] "); break;
-            case 'E': x++; printf("Este] "); break;
-         }
-   }
+
    void coordenadas(){
       printf("\nCoordenadas: (%d,%d)\n", x,y);
+      x = 0;
+      y = 0;
    }
     
 %} 
@@ -61,16 +53,13 @@
 %token <strVal>EJEX
 %type <c> NUMERO
 %token <c> NUM
-/*%token <strVal>EVALUAR*/
-/*%type <strVal> Expr*/
-/*%type <strVal> DIAGONAL*/
 /* Rule Section */
 %% 
    INICIO : INICIO LETRA
       | LETRA
+      | NUMERO
    ;
    LETRA : FIN      
-      | DIAGONAL
       | EJEY NUMERO {CalcularCoordenada($1,$2);} 
       | EJEX NUMERO {CalcularCoordenada($1,$2);}
       | EJEY {CalcularCoordenada($1,1);}     
@@ -80,13 +69,10 @@
    NUMERO : NUM
             |NUM NUMERO {$$= $1 + $2;} 
    ;  
-   DIAGONAL : EJEY EJEX {CalcularDiagonal($1,$2);}              
-   ;
+
    FIN: FINLINEA {coordenadas();}
    ;
 %% 
-
-
 
 void yyerror(char *s) { 
    printf("\n%s\n", s); 
@@ -99,13 +85,3 @@ int yywrap(){
 int main(){
     return (yyparse());
 }
-  
-
-/*
-Expr 
-   : Expr PALABRA
-   {printf("%s",$2);}
-   | PALABRA
-   {printf("%s",$1);}
-; 
-*/

@@ -14,6 +14,7 @@ PALABRA {LETRA}+
 
 {PALABRA} {yylval.strVal= strdup (yytext); return PALABRA; }
 "evaluar"            { return EVALUAR; }
+\n  {return FINLINEA;}
 [[:blank:]] ;
 .                     yyerror("Unknown character");
 

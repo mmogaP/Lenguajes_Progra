@@ -39,6 +39,8 @@
    }
    void coordenadas(){
       printf("\nCoordenadas: (%d,%d)\n", x,y);
+      x = 0;
+      y = 0;
    }
     
 %} 
@@ -51,10 +53,6 @@
 %token FINLINEA
 %token <strVal>EJEY
 %token <strVal>EJEX
-/*%token <strVal>EVALUAR*/
-/*%type <strVal> Expr*/
-/*%type <strVal> DIAGONAL*/
-/* Rule Section */
 %% 
    INICIO : INICIO LETRA
       | LETRA
@@ -84,13 +82,3 @@ int yywrap(){
 int main(){
     return (yyparse());
 }
-  
-
-/*
-Expr 
-   : Expr PALABRA
-   {printf("%s",$2);}
-   | PALABRA
-   {printf("%s",$1);}
-; 
-*/
