@@ -4,7 +4,7 @@ _Control I Lenguajes de Programación II – ICI425/INC415 Profesor: Alonso Inos
 
 ## Comenzando 🚀
 
-_Una vez compilado el código deberá ejecutar el archivo a.out generado para iniciar el programa, Los caracteres aceptados por el programa son los siguientes, NSEO. Usted puede ingresar esos caracteres para crear las indicaciones para desplazarse. Sea N para ir al Norte, S para ir al Sur, E para ir al Este y O para ir al Oeste. La salida del programa indicará la cordenada final resultante dentro de esas palabras que se ingresó. Una vez indica las cordenadas, se puede seguir ingresandos otras nuevas instrucciones mediante las palabras aceptadas, y indicará la cordenada final resultante. Cabe descatar que cada vez que se ingresa una nueva orden el punto inicial es de (0,0)._
+_Una vez compilado el código deberá ejecutar el archivo P1.exe generado para iniciar el programa, Los caracteres aceptados por el programa son los siguientes, NSEO. Usted puede ingresar esos caracteres para crear las indicaciones para desplazarse. Sea N para ir al Norte, S para ir al Sur, E para ir al Este y O para ir al Oeste. La salida del programa indicará la cordenada final resultante dentro de esas palabras que se ingresó. Una vez indica las cordenadas, se puede seguir ingresandos otras nuevas instrucciones mediante las palabras aceptadas, y indicará la cordenada final resultante. Cabe descatar que cada vez que se ingresa una nueva orden el punto inicial es de (0,0)._
 
 ## Despliegue 📦
 
